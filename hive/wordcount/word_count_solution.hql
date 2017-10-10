@@ -1,17 +1,14 @@
--- noinspection SqlNoDataSourceInspectionForFile
--- Load data
-CREATE TABLE alice(row STRING) STORED AS TEXTFILE;
+-- Create the table and load data
+CREATE TABLE alice(row STRING);
 LOAD DATA LOCAL INPATH "../../alice/*.txt" OVERWRITE INTO TABLE alice;
 
-
--- Investigate
+-- Explore data
 SELECT
     EXPLODE(SPLIT(row,' ')) AS word 
 FROM alice
 LIMIT 10; 
 
-
--- Perform Query
+-- Perform by the nest query 
 SELECT
     TRIM(w.word) AS word,
     SUM(1) AS cnt 
@@ -26,7 +23,7 @@ ORDER BY cnt DESC
 LIMIT 10;
 
 
--- Use LATERAL VIEW
+-- Perform by the LATERAL VIEW
 SELECT
     TRIM(w.word) AS word,
     SUM(1) AS cnt 
@@ -39,7 +36,6 @@ WHERE
 GROUP BY w.word
 ORDER BY cnt DESC 
 LIMIT 10;
-
 
 -- Store Results in new Table
 CREATE TABLE alice_wordcount
@@ -54,7 +50,6 @@ FROM (
 WHERE
     word <> ''
 GROUP BY w.word;
-
 
 -- Store Results into File
 INSERT OVERWRITE LOCAL DIRECTORY 'alice_wordcount'
