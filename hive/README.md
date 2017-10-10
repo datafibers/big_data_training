@@ -1,6 +1,6 @@
 # Hive Excercise
 
-## Word Count 
+## 1. Word Count 
 ### Purpose
 * Table creation
 * Problem solving
@@ -14,7 +14,7 @@
 4. Keep all word count result to another hive table
 5. Keep all word count result to a file
 
-## Stock Analysis
+## 2. Stock Analysis
 ### Purpose
 * Problem solving
 * CSV operation
