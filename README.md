@@ -7,3 +7,4 @@
 ## Other
 * [Sample Data](https://github.com/datafibers/data_set)
 * [Data Generation](http://www.mockaroo.com/)
+* [Dataset API](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset)
