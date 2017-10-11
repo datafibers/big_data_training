@@ -1,10 +1,18 @@
-/*
-Load the data file into PIG
+--Load the data file into table movie
 */
-Movies_Reviews = 
-	LOAD 'movies_data.csv' USING PigStorage(',') 
-	AS 
-	(index:int,title:chararray,year:int,rating:double,duration:int);
+create table movies ( 
+index:int,
+title:string,
+year:int,
+rating:double,
+duration:int)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+   "separatorChar" = "\t",
+   "quoteChar"     = "'",
+   "escapeChar"    = "\\"
+) 
+;
 
 /*
 To filter movies with rating > 4 and give average ratings of all the movies in that subset.
