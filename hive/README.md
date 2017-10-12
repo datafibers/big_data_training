@@ -33,3 +33,17 @@
 8. Get max price_high for each partition
 9. Drop data which is in partition with exchanger="NYSE"  
 10. Drop partition which is in partition with exchanger="NYSE"  
+
+## 3. Explore Movies
+### Purpose
+* Aggregations functions
+* Analytics functions
+* TSV operation
+
+### Steps
+1. Download the data [here](https://github.com/datafibers/spark_training/blob/master/hive/movie/data/movies_data.tsv) (Right Click and Save)
+2. Create an external table called ***movies*** with column named ***index:int, title:string, year:int, rating:double, duration:int*** on the tsv file on hdfs /tmp/data/movie
+3. Explore the data find out movies with rating > 4 and give average ratings of all the movies in that subset for each year.
+4. Explore the data find out the count of all movies as well as the count of movies with rating > 2
+5. Explore the data find out the names of highest rated movie for each year. How about top 2?
+6. Explore the data find out the number of days between movie release year and todays date for each movie
