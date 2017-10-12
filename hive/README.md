@@ -23,7 +23,7 @@
 * Static Partitions
 
 ### Steps
-1. Download the data of the article is [here](https://github.com/datafibers/spark_training/blob/master/hive/stock/data/stocks.csv.txt) (Right Click and Save)
+1. Download the data of the article is [here](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/stocks/data/stocks.csv) (Right Click and Save)
 2. Create an internal table called ***stocks*** with column named ***ymd, price_open, price_high, price_low, price_close, volumn, price_adj_close*** with partition columns ***exchanger*** and ***symbol***
 3. Load the data into partition with exchanger="NASDAQ", symbol="AAPL"
 4. Load the data into partition with exchanger="NASDAQ", symbol="INTC"
@@ -41,7 +41,7 @@
 * TSV operation
 
 ### Steps
-1. Download the data [here](https://github.com/datafibers/spark_training/blob/master/hive/movie/data/movies_data.tsv) (Right Click and Save)
+1. Download the data [here](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/movie/movies_data.tsv) (Right Click and Save)
 2. Create an external table called ***movies*** with column named ***index:int, title:string, year:int, rating:double, duration:int*** on the tsv file on hdfs /tmp/data/movie
 3. Explore the data find out movies with rating > 4 and give average ratings of all the movies in that subset for each year.
 4. Explore the data find out the count of all movies as well as the count of movies with rating > 2
