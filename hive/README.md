@@ -1,6 +1,9 @@
 # Hive Excercise
 
-## 1. Word Count 
+## 1. Word Count
+### Description
+Explore a great novel ***Alice in Wonderland*** and find out the count for words.
+
 ### Purpose
 * Table creation
 * Problem solving
@@ -15,6 +18,9 @@
 5. Keep all word count result to a file
 
 ## 2. Stock Analysis
+### Description
+Explore a stock market data file from Yahoo Finance.
+
 ### Purpose
 * Problem solving
 * CSV operation
@@ -35,6 +41,9 @@
 10. Drop partition which is in partition with exchanger="NYSE"  
 
 ## 3. Explore Movies
+### Description
+Explore a YouTube movie data to find out the most popular movie in the year.
+
 ### Purpose
 * Aggregations functions
 * Analytics functions
