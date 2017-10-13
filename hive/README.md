@@ -67,7 +67,7 @@ Explore a sample human resource file to find out the employee information.
 * CTAS, UNION, ORDER BY statement
 
 ### Steps
-1. Download the data [here](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/employee/employee.txt) (Right Click and Save)
+1. Download the data [here](https://github.com/datafibers/spark_training/blob/master/hive/employee/data/employee.txt) (Right Click and Save)
 2. Create an external table called ***employee*** with column named ***name:string***, work_place:array<string>, sex_age:struct<sex:string,age:int>, skills_score:map<string,int>, depart_title:map<string,array<string>> *** on the piped file on hdfs /tmp/data/employee
 3. Explore the table columns with complex data type.
 4. Create a new table empoyee_export having columns, name, first_work_place, age
