@@ -74,16 +74,12 @@ Explore a sample human resource file to find out the employee information.
 5. Export the data in empoyee_export to one piped flat file seperate columns by "|". Then, add header row as the 1st line with format HEADER|current timestamp|file_name and a trailer row as the last line with format TRAILER|current date|ROW COUNT
     
 ### Example exported file
+```
 HEADER|2017-10-15 18:34:62.345|employee_20171015.flat
-
 Michael|Toronto|55
-
 James|Beijing|34
-
 Lily|Shenzhen|24
-
 Robert|Montreal|32
-
 TRAILER|2017-10-15|ROW COUNT: 4
-  
+```  
 ## 5. Shoping Cart Analytics
