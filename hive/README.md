@@ -72,9 +72,7 @@ Explore a sample human resource file to find out the employee information.
 3. Explore the table columns with complex data type.
 4. Create a new table empoyee_export having columns, name, first_work_place, age
 5. Export the data in empoyee_export to one piped flat file seperate columns by "|" and add header and trailer row as follows
-  Add header row as the 1st line with format HEADER|current timestamp|file_name with datetime, 
-  such as HEADER|2017-10-15 18:34:62.345|employee_20171015.flat
-  Add trailer row as the last line with format TRAILER|current date|Row Count for details, 
-  such as TRAILER|2017-10-15|ROW COUNT: 4
-
+    1. Add header row as the 1st line with format HEADER|current timestamp|file_name with datetime, such as HEADER|2017-10-15 18:34:62.345|employee_20171015.flat
+    2. Add trailer row as the last line with format TRAILER|current date|Row Count for details, such as TRAILER|2017-10-15|ROW COUNT: 4
+  
 ## 5. Shoping Cart Analytics
