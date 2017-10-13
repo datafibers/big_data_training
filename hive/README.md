@@ -56,3 +56,7 @@ Explore a YouTube movie data to find out the most popular movie in the year.
 4. Explore the data find out the count of all movies as well as the count of movies with rating > 2
 5. Explore the data find out the names of highest rated movie for each year. How about top 2?
 6. Explore the data find out the number of days between movie release year and todays date for each movie
+
+## 4. HR Management
+
+## 5. Shoping Cart Analytics
