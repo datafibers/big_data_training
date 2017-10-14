@@ -1,13 +1,13 @@
-//create database test_db
-CREATE DATABASE test_db
-COMMENT  "This is a test db"
-LOCATION "/hivetest/"
-WITH DBPROPERTIES ("creator" = "hadoop", "date" = "2014-12-28");
+//create database review_db
+CREATE DATABASE review_db
+COMMENT  "This is a product review db"
+LOCATION "/tmp/data/prod_review/"
+WITH DBPROPERTIES ("creator" = "hadoop", "date" = "2017-11-01");
 
 //show database information
 SHOW DATABASES;
-DESCRIBE DATABASE test_db;
-DESCRIBE DATABASE EXTENDED test_db;
+DESCRIBE DATABASE review_db;
+DESCRIBE DATABASE EXTENDED review_db;
 
 //revise database information
 ALTER DATABASE test_db SET DBPROPERTIES ('edited-by' = 'hadoop');
@@ -19,11 +19,11 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' ;
 LOAD DATA LOCAL INPATH 'ratings.tsv' OVERWRITE INTO TABLE ratings;
 
 //create external table 
-create external table items(itemid INT, category STRING)ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'  LOCATION '/yelp'
+create external table items(itemid INT, category STRING)ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'  LOCATION '/tmp/data/yelp'
 
 //upload data
-hadoop fs -mkdir /yelp
-hadoop fs -put items.tsv /yelp
+hadoop fs -mkdir /tmp/data/yelp
+hadoop fs -put items.tsv /tmp/data/yelp
 
 //view items
 DESC items;
@@ -32,6 +32,7 @@ select * from items;
 
 //Query SQL
 select * from ratings s  join items t on s.itemid=t.itemid limit 30;
+
 //Set local mode
 SET hive.exec.mode.local.auto=true;
 
