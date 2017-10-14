@@ -80,4 +80,29 @@ Lily|Shenzhen|24
 Robert|Montreal|32
 TRAILER|2017-10-15|ROW COUNT: 4
 ```  
-## 5. Shoping Cart Analytics
+## 5. Yelp Review
+### Description
+Explore a place review file from Yelp.
+
+### Purpose
+* Partition insert
+* Bucket tables, internal and external tables
+* Joins and sampling
+
+### Steps
+1. Create review_db database and add comments, creator, and creation date.
+2. Show above information once created
+3. Create internal table called ***ratings*** with columns (userid INT,itemid INT, rating INT) and row seperate by tab.
+4. Load the [ratings.tsv](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/reviews/data/ratings.tsv) into it.
+5. Create external table called ***items*** with columns (itemid INT, category STRING) and row seperate by tab at hdfs location '/tmp/data/yelp'
+6. Update [items.tsv](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/reviews/data/items.tsv) to the above folder
+7. Join ***ratings*** and ***items*** table by column itemid, then show the first 30 rows.
+8. Create table ***top_ratings*** (userid INT, itemid INT) and partitioned by column rating and row seperate by tab.
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+9. Load [top_ratings.tsv](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/reviews/data/top_ratings.tsv) to the ***top_ratings*** in partition rating = 5
+10. Load [second_ratings.tsv](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/reviews/data/second_ratings.tsv) to the ***top_ratings*** in partition rating = 4
+11. Create a bucket table called ***bucket_ratings*** with columns (userid int, itemid int,rating int) cluster by rating sorted by rating in normal order into 5 buckets and row seperate by tab.
+12. Load [ratings.tsv](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/reviews/data/ratings.tsv)  into ***bucket_ratings***
+13. Fetch sample record from ***bucket_ratings***
+
+## 6. Shoping Cart Analytics
