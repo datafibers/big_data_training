@@ -105,4 +105,26 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
 12. Load [ratings.tsv](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/reviews/data/ratings.tsv)  into ***bucket_ratings***
 13. Fetch sample record from ***bucket_ratings***
 
-## 6. Shoping Cart Analytics
+## 6. Restaurant Review
+### Description
+Explore a restaurant review file from Yelp.
+
+### Purpose
+* Problem solving
+* SQL query skills
+
+### Steps
+1. Create a external table called restaurant to refer the data retaurants.json [here](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/retaurants/data/retaurants.json)
+2. Write a query to display all the restaurant which is in the borough Bronx.
+3. Write a query to display the first 5 restaurant which is in the borough Bronx, how about skip first 5?
+4. Write a query to find the restaurants who achieved a score more than 90, hint:Array
+5. Write a query to find the restaurants that achieved a score is more than 80 but less than 100.
+6. Write a query to find the restaurants that do not prepare any cuisine of 'American' and their grade score more than 70 
+7. Write a query to find the restaurants which do not prepare any cuisine of 'American ' and achieved a grade point 'A' not belongs to the borough Brooklyn.
+8. Write a query to find the restaurants which belong to the borough Bronx and prepared either American or Chinese dish.
+9. Write a query to find the restaurant Id, name, borough and cuisine for those restaurants which belong to the borough Staten Island or Queens or Bronxor Brooklyn.
+10. Write a query to find the restaurant Id, name, borough and cuisine for those restaurants which are not belonging to the borough Staten Island or Queens or Bronxor Brooklyn. 
+11. Write a query to find the restaurant Id, name, borough and cuisine for those restaurants which achieved a score which is not more than 10.
+12. Write a query to find the restaurant Id, name, borough and cuisine for those restaurants which prepared dish except 'American' and 'Chinees' or restaurant's name begins with letter 'Wil'.
+
+
