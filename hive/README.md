@@ -126,4 +126,12 @@ Explore a restaurant review file from Yelp.
 8. Write a query to find the restaurant Id, name, borough and cuisine for those restaurants which are not belonging to the borough Staten Island or Queens or Bronxor Brooklyn. 
 9. Write a query to find the restaurant Id, name, borough and cuisine for those restaurants which prepared dish except 'American' and 'Chinees' or restaurant's name begins with letter 'Wil'.
 
+## 6. Avro Schema Evolution
+### Description
+Find out how to deal with data schema evolution using avro
+
+### Purpose
+* Schema design
+
+### Steps
 
