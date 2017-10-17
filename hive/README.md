@@ -134,4 +134,4 @@ Find out how to deal with data schema evolution using avro
 * Schema design
 
 ### Steps
-
+Following the steps [here](https://github.com/datafibers/spark_training/blob/master/hive/avro/avro_solution.hql)
