@@ -15,10 +15,10 @@ location '/tmp/data/movie'
 ;
 
 --To filter movies with rating > 4 and give average ratings of all the movies in that subset for each year.
-select avg(rating) from movies group by year having rating > 4
+select avg(rating) from movies where rating > 4 group by year 
 
 --To Provide a count of all movies as well as the count of movies with rating > 2
-select count(*), count(case when rating > 2 then 1 else 0 end) from movies
+select count(*), sum(case when rating > 2 then 1 else 0 end) from movies
 
 --By each year,output the names of highest rated movie
 select title from (
