@@ -11,7 +11,7 @@ price_adj_close FLOAT
 row format delimited fields terminated by ',';
 
 # Load the data
-LOAD DATA LOCAL INPATH 'data/stocks.csv' OVERWRITE INTO TABLE stocks partition(exchanger="NASDAQ",symbol="AAPL");
+LOAD DATA INPATH '/tmp/data/data_set/stocks.csv' OVERWRITE INTO TABLE stocks partition(exchanger="NASDAQ",symbol="AAPL");
 
 # Check the partition tables
 show partitions stocks;
@@ -22,9 +22,9 @@ show partitions stocks;
 +-------------------------------+--+
 
 # Spoof more data
-LOAD DATA LOCAL INPATH 'data/stocks.csv' OVERWRITE INTO TABLE stocks partition(exchanger="NASDAQ",symbol="INTC");
-LOAD DATA LOCAL INPATH 'data/stocks.csv' OVERWRITE INTO TABLE stocks partition(exchanger="NYSE",symbol="GE");
-LOAD DATA LOCAL INPATH 'data/stocks.csv' OVERWRITE INTO TABLE stocks partition(exchanger="NYSE",symbol="IBM");
+LOAD DATA INPATH '/tmp/data/data_set/stocks.csv' OVERWRITE INTO TABLE stocks partition(exchanger="NASDAQ",symbol="INTC");
+LOAD DATA INPATH '/tmp/data/data_set/stocks.csv' OVERWRITE INTO TABLE stocks partition(exchanger="NYSE",symbol="GE");
+LOAD DATA INPATH '/tmp/data/data_set/stocks.csv' OVERWRITE INTO TABLE stocks partition(exchanger="NYSE",symbol="IBM");
 
 # Explore partition table
 select * from stocks where exchanger='NASDAQ' and symbol='AAPL' limit 10 ;
