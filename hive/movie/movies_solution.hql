@@ -1,5 +1,5 @@
 --Load the data file into table movies
-create table movies ( 
+create external table movies ( 
 index int,
 title string,
 year int,
