@@ -1,10 +1,10 @@
 --Load the data file into table movies
 create table movies ( 
-index:int,
-title:string,
-year:int,
-rating:double,
-duration:int)
+index int,
+title string,
+year int,
+rating double,
+duration int)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
    "separatorChar" = "\t",
