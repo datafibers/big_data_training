@@ -115,7 +115,7 @@ Explore a restaurant review file from Yelp.
 * SQL query skills
 
 ### Steps
-1. Create an external table called restaurants to refer the data retaurants.json [here](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/retaurants/data/retaurants.json). Note, each the json file may have ***different*** keys
+1. Create an external table called restaurants to refer the data retaurants.json [here](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/restaurants/data/restaurants.json). Note, each the json file may have ***different*** keys
 2. Write a query to show total number of restaurant which is in the borough Bronx.
 3. Write a query to display the first 5 restaurant order by id which is in the borough Bronx, how about skip first 5 to show row 6 - 10?
 4. Write a query to find the restaurants that achieved a score which is not smaller than 80 and no bigger than 100.
