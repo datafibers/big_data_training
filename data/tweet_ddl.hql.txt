@@ -1,0 +1,12 @@
+create external table flat_text
+(
+userid string,
+timestamp string,
+latitude string,
+longitude string,
+tweet string
+)
+ROW FORMAT SERDE ‘org.apache.hadoop.hive.contrib.serde2.RegexSerDe’
+WITH SERDEPROPERTIES (“input.regex”=”(.{14})(.{20})(.{10})(.{12})(.{1,})”)
+STORED AS TEXTFILE
+LOCATION ‘/user/data/twitter’;

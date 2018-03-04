@@ -1,10 +1,13 @@
-# Spark Training Repository
+# Big Data Training Repository
 
 ## Exercises
-* [Hive/Spark SQL Excersice](https://github.com/datafibers/spark_training/blob/master/hive/README.md)
-* [Spark Scala Excersice](https://github.com/datafibers/spark_demo)
+* hive: spark/hive sql
+* spark: spark scala/shell
+* zeppelin: notebook
+* data: more sample data
 
 ## Other
-* [Sample Data](https://github.com/datafibers/data_set)
+* [Lab enviroment vagrant](https://github.com/datafibers/lab_env)
 * [Data Generation](http://www.mockaroo.com/)
 * [Dataset API](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset)
+* [Spark CSV to Avro Tool](https://github.com/datafibers/spark_avro)
