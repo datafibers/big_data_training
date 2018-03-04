@@ -1,10 +1,10 @@
 -- Create the table and load data
-CREATE TABLE alice(row STRING);
+CREATE TABLE alice(line STRING);
 LOAD DATA LOCAL INPATH "../../alice/*.txt" OVERWRITE INTO TABLE alice;
 
 -- Explore data
 SELECT
-    EXPLODE(SPLIT(row,' ')) AS word 
+    EXPLODE(SPLIT(line,' ')) AS word 
 FROM alice
 LIMIT 10; 
 
@@ -14,7 +14,7 @@ SELECT
     SUM(1) AS cnt 
 FROM (
     SELECT 
-        EXPLODE(SPLIT(row,' ')) AS word 
+        EXPLODE(SPLIT(line,' ')) AS word 
     FROM alice) as w 
 WHERE
     word <> ''
@@ -30,7 +30,7 @@ SELECT
 FROM
     alice 
 LATERAL VIEW
-    EXPLODE(SPLIT(row,' ')) w AS word 
+    EXPLODE(SPLIT(line,' ')) w AS word 
 WHERE
     word <> ''
 GROUP BY w.word
