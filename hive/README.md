@@ -12,7 +12,7 @@ Explore a great novel ***Alice in Wonderland*** and find out the count for words
 
 ### Steps
 1. Download the data of the article is [here](https://raw.githubusercontent.com/datafibers/spark_training/master/hive/wordcount/data/alice-in-wonderland.txt) (Right Click and Save)
-2. Create an internal table called ***alice*** with column named ***row*** to hold the data
+2. Create an internal table called ***alice*** with column named ***line*** to hold the data
 3. Load the data and explore the table to find the words having top 10 counts
 4. Keep all word count result to another hive table
 5. Keep all word count result to a file
