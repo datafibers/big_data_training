@@ -61,3 +61,22 @@ union all
 select 3 as no, concat_ws('|','TRAILER', cast(current_date as string), 'ROW COUNT: ', cast(count(*) as string)) as line from empoyee_export
 ) c order by no
 ) d
+
+--another solution
+with header as (
+select concat_ws('|', 'HEADER',cast(current_timestamp as string),'employee_20180311.flat') as r, 0 as rn
+),
+body as (
+select concat_ws('|',name, work_place[0], cast(sex_age.age as string)) as r, 1 as rn from employee
+),
+trailer as (
+select concat_ws('|','TRAILER',cast(current_date as string), concat('ROW COUNT: ', cast(count(*) as string))) as r, 2 as rn from body
+),
+allr as (
+select r, rn from header union all select r, rn from body union all select r, rn from trailer order by rn
+)
+insert overwrite local directory '/tmp/output'
+select
+r
+from
+allr 
