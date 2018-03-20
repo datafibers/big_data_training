@@ -3,21 +3,24 @@ create table if not exists emp_basic (
 emp_id int,emp_name string,job_title string,company string,start_date date,quit_date date
 )
 row format delimited
-fields terminated by ',';
+fields terminated by ','
+tblproperties ("skip.header.line.count"="1");
 
 drop table if exists emp_psn; 
 create table if not exists emp_psn (
 emp_id int,address string,city string,phone string,email string,gender char(1),age int
 )
 row format delimited
-fields terminated by ',';
+fields terminated by ','
+tblproperties ("skip.header.line.count"="1");
 
 drop table if exists emp_bef; 
 create table if not exists emp_bef (
 emp_id int,sin string,salary decimal(10,2),payroll string,level varchar(2)
 )
 row format delimited
-fields terminated by ',';
+fields terminated by ','
+tblproperties ("skip.header.line.count"="1");
 
 load data local inpath 'emp_basic.csv' overwrite into table emp_basic;
 load data local inpath 'emp_psn.csv' overwrite into table emp_psn;
@@ -104,3 +107,14 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
 WITH SERDEPROPERTIES ("input.regex"="(.{14})(.{20})(.{10})(.{12})(.{1,})");
 
 load data local inpath 'tweet_ful.txt' overwrite into table twitter;
+
+drop table if exists shopping;
+create table if not exists shopping (
+first_name string,last_name string,email_address string,country string,gender string,age int,preferred_color string,monthly_spending decimal(10,3),credit_cards string
+)
+row format
+delimited fields terminated by ','
+lines terminated by '\n'
+tblproperties ("skip.header.line.count"="1");
+
+load data local inpath 'customer_shopping_data.csv' overwrite into table shopping;
