@@ -101,15 +101,6 @@ fields terminated by '|'
 collection items terminated by ','
 map keys terminated by ':';
 
-drop table if exists twitter;
-create table if not exists twitter(
-userid string,time string,latitude string,longitude string,tweet string
-)
-ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
-WITH SERDEPROPERTIES ("input.regex"="(.{14})(.{20})(.{10})(.{12})(.{1,})");
-
-load data local inpath 'tweet_ful.txt' overwrite into table twitter;
-
 drop table if exists shopping;
 create table if not exists shopping (
 first_name string,last_name string,email_address string,country string,gender string,age int,preferred_color string,monthly_spending decimal(10,3),credit_cards string
