@@ -56,6 +56,8 @@ drop table if exists employee_hr;
 create table if not exists employee_hr(name string,employee_id int,sin_number string,start_date date
 )
 row format delimited
+fields terminated by '|';
+
 load data local inpath 'employee_hr.txt' overwrite into table employee_hr;
 
 drop table if exists employee_id;
