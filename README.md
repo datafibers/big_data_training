@@ -1,10 +1,11 @@
 # Big Data Training Repository
 
 ## Exercises
-* hive: spark/hive sql
-* spark: spark scala/shell
-* zeppelin: notebook
-* data: more sample data
+* Hive/Spark SQL: spark/hive sql
+* [Hive UDF](https://github.com/datafibers/hiveudf)
+* Spark API: spark scala/shell
+* Zeppelin: notebook
+* Data: more sample data
 
 ## Other
 * [Lab enviroment vagrant](https://github.com/datafibers/lab_env)
