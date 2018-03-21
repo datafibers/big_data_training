@@ -2,7 +2,7 @@
 
 ## Exercises
 * Hive/Spark SQL: spark/hive sql
-* [Hive UDF](https://github.com/datafibers/hiveudf)
+* [Hive UDF](https://github.com/datafibers/hiveudf): How to write hive udf by Java or Python
 * Spark API: spark scala/shell
 * Zeppelin: notebook
 * Data: more sample data
