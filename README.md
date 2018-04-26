@@ -1,7 +1,7 @@
 # Big Data Training Repository
 
 ## Exercises
-* Hive/Spark SQL: spark/hive sql
+* [Hive/Spark SQL](https://github.com/datafibers/big_data_training/tree/master/hive): spark/hive sql
 * [Hive UDF](https://github.com/datafibers/hiveudf): How to write hive udf by Java or Python
 * [HBase Java API](https://github.com/datafibers/hbase_java_api)
 * Spark API: spark scala/shell
