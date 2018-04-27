@@ -1,3 +1,6 @@
+create database if not exists demo;
+use demo;
+
 drop table if exists emp_basic; 
 create table if not exists emp_basic (
 emp_id int, emp_name string, job_title string, company string, start_date date, quit_date date
