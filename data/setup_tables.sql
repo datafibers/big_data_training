@@ -25,9 +25,9 @@ row format delimited
 fields terminated by ','
 tblproperties ("skip.header.line.count"="1");
 
-load data inpath '/tmp/hivedemo/data/emp_basic.csv' overwrite into table emp_basic;
-load data inpath '/tmp/hivedemo/data/emp_psn.csv' overwrite into table emp_psn;
-load data inpath '/tmp/hivedemo/data/emp_bef.csv' overwrite into table emp_bef;
+load data inpath '/tmp/hivedemo/data/emp_basic.csv' overwrite table emp_basic;
+load data inpath '/tmp/hivedemo/data/emp_psn.csv' overwrite table emp_psn;
+load data inpath '/tmp/hivedemo/data/emp_bef.csv' overwrite table emp_bef;
 
 drop table if exists employee; 
 create table if not exists employee (
@@ -39,7 +39,7 @@ fields terminated by '|'
 collection items terminated by ','
 map keys terminated by ':';
 
-load data inpath '/tmp/hivedemo/data/employee.txt' overwrite into table employee;
+load data inpath '/tmp/hivedemo/data/employee.txt' overwrite table employee;
 
 --create external table and load the data
 drop table if exists employee_external; 
@@ -53,7 +53,7 @@ collection items terminated by ','
 map keys terminated by ':'
 location '/tmp/employee';
 
-load data inpath '/tmp/hivedemo/data/employee.txt' overwrite into table employee_external;
+load data inpath '/tmp/hivedemo/data/employee.txt' overwrite table employee_external;
 
 drop table if exists employee_hr;
 create table if not exists employee_hr(name string, employee_id int, sin_number string, start_date date
@@ -61,7 +61,7 @@ create table if not exists employee_hr(name string, employee_id int, sin_number 
 row format delimited
 fields terminated by '|';
 
-load data inpath '/tmp/hivedemo/data/employee_hr.txt' overwrite into table employee_hr;
+load data inpath '/tmp/hivedemo/data/employee_hr.txt' overwrite table employee_hr;
 
 drop table if exists employee_id;
 create table if not exists employee_id(
@@ -72,7 +72,7 @@ fields terminated by '|'
 collection items terminated by ','
 map keys terminated by ':';
 
-load data inpath '/tmp/hivedemo/data/employee_id.txt' overwrite into table employee_id;
+load data inpath '/tmp/hivedemo/data/employee_id.txt' overwrite table employee_id;
 
 drop table if exists employee_contract;
 create table if not exists employee_contract(
@@ -113,4 +113,4 @@ delimited fields terminated by ','
 lines terminated by '\n'
 tblproperties ("skip.header.line.count"="1");
 
-load data inpath '/tmp/hivedemo/data/customer_shopping_data.csv' overwrite into table shopping;
+load data inpath '/tmp/hivedemo/data/customer_shopping_data.csv' overwrite table shopping;
