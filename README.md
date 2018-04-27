@@ -1,5 +1,13 @@
 # Big Data Training Repository
 
+## Setup Tables
+```
+hdfs dfs -mkdir -p /tmp/hivedemo/
+cd big_data_training
+hdfs dfs -put -f data /tmp/hivedemo/
+beeline -u "jdbc:hive2://localhost:10000" -f data/setup_tables.sql
+```
+
 ## Exercises
 * [Hive/Spark SQL](https://github.com/datafibers/big_data_training/tree/master/hive): spark/hive sql
 * [Hive UDF](https://github.com/datafibers/hiveudf): How to write hive udf by Java or Python
