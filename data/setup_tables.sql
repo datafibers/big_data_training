@@ -53,7 +53,7 @@ collection items terminated by ','
 map keys terminated by ':'
 location '/tmp/employee';
 
-load data inpath '/tmp/hivedemo/data/employee.txt' overwrite table employee_external;
+load data inpath '/tmp/hivedemo/data/employee2.txt' overwrite table employee_external;
 
 drop table if exists employee_hr;
 create table if not exists employee_hr(name string, employee_id int, sin_number string, start_date date
