@@ -37,3 +37,20 @@ oza <job_id>
 ```
 ozk <job_id>
 ```
+# Oozie Setup Issues
+
+#### Issues 1. Oozie web console is disabled. 
+To enable Oozie web console, we need to install the Ext JS library (in the current directory).
+1. Copy it to the path ```cp ext-2.2.zip /usr/hdp/current/oozie-client/libext/```
+2. Regenerate the war file by executing ```/usr/hdp/current/oozie-server/bin/oozie-setup.sh prepare-war```
+3. Restart Oozie from Ambari
+
+#### Issue 2. Oozie stuck at PRE status
+1. In Ambari oozie config, choose **Existing MySQL / MariaDB Database**
+1. Database Name: oozie
+1. Database Username: root
+1. Database Password: hadoop
+1. JDBC Driver Class: com.mysql.jdbc.Driver
+1. Database URL: jdbc:mysql://sandbox-hdp.hortonworks.com/oozie
+1. Oozie Data Dir: /hadoop/oozie/data
+1. Restart all oozie servers and choose all suggested changes
