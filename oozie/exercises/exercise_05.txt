@@ -1,0 +1,35 @@
+CREATE DATABASE weblogs;
+
+CREATE EXTERNAL TABLE `access`(
+   `host` string,                                                                       
+   `identity` string,                                                                   
+   `userid` string,                                                                     
+   `accesstime` string,                                                              
+   `request` string,                                                                    
+   `status` string,                                                                     
+   `size` string,                                                                       
+   `referer` string,                                                                    
+   `agent` string)
+ PARTITIONED BY ( etl_ymd string )
+ ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ' '
+ STORED AS INPUTFORMAT                                                                  
+   'org.apache.hadoop.mapred.TextInputFormat'
+ OUTPUTFORMAT                                                                           
+   'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'                         
+ LOCATION                                                                               
+   'hdfs://sandbox-hdp.hortonworks.com:8020/stage-data/weblogs/access';  
+
+CREATE TABLE `access_orc`(
+   `host` string,
+   `identity` string,
+   `userid` string,
+   `accesstime` timestamp,
+   `request` string,
+   `status` string,
+   `size` string,
+   `referer` string,
+   `agent` string)
+ PARTITIONED BY ( ymd string )
+ STORED AS ORC;   
+   

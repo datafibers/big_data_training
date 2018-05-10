@@ -1,0 +1,176 @@
+reference : https://www.infoq.com/articles/oozieexample
+
+The workflow which we are describing here implements vehicle GPS probe data ingestion. Probes data is delivered to a specific HDFS directory[1] hourly in a form of file, containing all probes for this hour. Probes ingestion is done daily for all 24 files for this day. If the amount of files is 24, an ingestion process should start. Otherwise:
+
+For the current day do nothing
+For the previous days – up to 7, send the reminder to the probes provider
+If the age of the directory is 7 days, ingest all available probes files.
+
+Here the main process (ingestion process) first calculates directories names for current and 6 previous days and the starts (forks) 7 directory subprocesses (subflows). Once all subprocesses reach the end state, the join step will transfer control to end state.
+
+The subprocess starts by getting information about the directory – its age and amount of files. Based on this information, it makes a decision whether to ingest and archive data, send reminder email or do nothing.
+
+Directory subprocess implementation
+The workhorse of our implementation is directory subprocess (Listing 1)
+
+<workflow-app xmlns='uri:oozie:workflow:0.1' name='processDir'>
+
+       <start to='getDirInfo' />
+       <!-- STEP ONE --> 
+       <action name='getDirInfo'> 
+               <!--writes 2 properties: dir.num-files: returns -1 if dir doesn't exist, 
+                   otherwise returns # of files in dir dir.age: returns -1 if dir doesn't exist, 
+                   otherwise returns age of dir in days --> 
+               <java> 
+                   <job-tracker>${jobTracker}</job-tracker> 
+                   <name-node>${nameNode}</name-node> 
+                   <main-class>com.navteq.oozie.GetDirInfo</main-class> 
+                   <arg>${inputDir}</arg> 
+                   <capture-output /> 
+               </java> 
+               <ok to="makeIngestDecision" /> 
+               <error to="fail" /> 
+        </action>
+
+        <!-- STEP TWO --> 
+        <decision name="makeIngestDecision"> 
+               <switch> 
+                      <!-- empty or doesn't exist --> 
+                      <case to="end"> 
+                            ${wf:actionData('getDirInfo')['dir.num-files'] lt 0 || 
+                            (wf:actionData('getDirInfo')['dir.age'] lt 1 and 
+                            wf:actionData('getDirInfo')['dir.num-files'] lt 24)} 
+                      </case> 
+                      <!-- # of files >= 24 --> 
+                      <case to="ingest"> 
+                            ${wf:actionData('getDirInfo')['dir.num-files'] gt 23 || 
+                            wf:actionData('getDirInfo')['dir.age'] gt 6} 
+                      </case> 
+                      <default to="sendEmail"/> 
+               </switch> 
+        </decision>
+
+        <!--EMAIL--> 
+        <action name="sendEmail"> 
+                <java> 
+                      <job-tracker>${jobTracker}</job-tracker> 
+                      <name-node>${nameNode}</name-node> 
+                      <main-class>com.navteq.oozie.StandaloneMailer</main-class> 
+                      <arg>probedata2@navteq.com</arg> 
+                      <arg>gregory.titievsky@navteq.com</arg> 
+                      <arg>${inputDir}</arg> 
+                      <arg>${wf:actionData('getDirInfo')['dir.num-files']}</arg> 
+                      <arg>${wf:actionData('getDirInfo')['dir.age']}</arg> 
+                </java> 
+                <ok to="end" /> 
+                <error to="fail" /> 
+        </action>
+
+        <!--INGESTION --> 
+        <action name="ingest"> 
+                <java> 
+                      <job-tracker>${jobTracker}</job-tracker> 
+                      <name-node>${nameNode}</name-node> 
+                      <prepare> 
+                             <delete path="${outputDir}" /> 
+                      </prepare> 
+                      <configuration> 
+                             <property> 
+                                   <name>mapred.reduce.tasks</name> 
+                                   <value>300</value> 
+                             </property> 
+                      </configuration> 
+                      <main-class>com.navteq.probedata.drivers.ProbeIngest</main-class> 
+                      <arg>-conf</arg> 
+                      <arg>action.xml</arg> 
+                      <arg>${inputDir}</arg> 
+                      <arg>${outputDir}</arg> 
+                </java> 
+                <ok to=" archive-data" /> 
+                <error to="ingest-fail" /> 
+        </action>
+
+        <!—Archive Data --> 
+        <action name="archive-data"> 
+                <fs> 
+                      <move source='${inputDir}' target='/probe/backup/${dirName}' /> 
+                      <delete path = '${inputDir}' /> 
+                </fs> 
+                <ok to="end" /> 
+                <error to="ingest-fail" /> 
+        </action>
+
+        <kill name="ingest-fail"> 
+                <message>Ingestion failed, error 
+                     message[${wf:errorMessage(wf:lastErrorNode())}]</message> 
+        </kill>
+
+        <kill name="fail"> 
+                <message>Java failed, error 
+                     message[${wf:errorMessage(wf:lastErrorNode())}]</message> 
+        </kill> 
+        <end name='end' /> 
+</workflow-app>
+
+Start node of this subprocess invokes custom java node, which gets the directory information 
+
+
+package com.navteq.oozie;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.GregorianCalendar;
+import java.util.Properties;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+
+public class GetDirInfo {
+         private static final String OOZIE_ACTION_OUTPUT_PROPERTIES = "oozie.action.output.properties";
+
+         public static void main(String[] args) throws Exception {
+                  String dirPath = args[0];
+                  String propKey0 = "dir.num-files";
+                  String propVal0 = "-1";
+                  String propKey1 = "dir.age";
+                  String propVal1 = "-1";
+                  System.out.println("Directory path: '"+dirPath+"'");
+
+                  Configuration conf = new Configuration();
+                  FileSystem fs = FileSystem.get(conf);
+                  Path hadoopDir = new Path(dirPath);
+                  if (fs.exists(hadoopDir)){
+                             FileStatus[] files = FileSystem.get(conf).listStatus(hadoopDir);
+                             int numFilesInDir = files.length;
+                             propVal0 = Integer.toString(numFilesInDir);
+                             long timePassed, daysPassedLong;
+                             int daysPassed;
+                             String dirName = hadoopDir.getName();
+                             String[] dirNameArray = dirName.split("-");
+                             if (dirNameArray.length == 3) {
+                                      int year = Integer.valueOf(dirNameArray[0]);
+                                      int month = Integer.valueOf(dirNameArray[1]) - 1; //months are 0 based
+                                      int date = Integer.valueOf(dirNameArray[2]);
+                                      GregorianCalendar dirCreationDate = new GregorianCalendar(year,
+                                                      month, date);
+                                      timePassed = (new GregorianCalendar()).getTimeInMillis()
+                                                      - dirCreationDate.getTimeInMillis();
+                                      daysPassed = (int) = timePassed / 1000 / 60 / 60 / 24;;
+                                      propVal1 = Integer.toString(daysPassed);
+                             }
+                  }
+                  String oozieProp = System.getProperty(OOZIE_ACTION_OUTPUT_PROPERTIES);
+                  if (oozieProp != null) {
+                             File propFile = new File(oozieProp);
+                             Properties props = new Properties();
+                             props.setProperty(propKey0, propVal0);
+                             props.setProperty(propKey1, propVal1);
+                             OutputStream os = new FileOutputStream(propFile);
+                             props.store(os, "");
+                             os.close();
+                  } else
+                             throw new RuntimeException(OOZIE_ACTION_OUTPUT_PROPERTIES
+                                            + " System property not defined");
+         }
+}

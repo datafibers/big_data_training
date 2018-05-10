@@ -1,0 +1,28 @@
+
+mysql -u root -phadoop 
+
+create database employees;
+
+grant all privileges on employees.* to 'sqoop'@'localhost' identified by 'hadoop';
+flush privileges;
+
+mysql -u sqoop -phadoop employees < employees.sql
+
+mysql -u sqoop -phadoop employees
+show tables;
+
+
+sqoop import --connect jdbc:mysql://localhost:3306/employees --driver com.mysql.jdbc.Driver --username sqoop --password hadoop --table employees --target-dir '/stage-data/employees' --split-by 1 
+
+sqoop import --connect jdbc:mysql://localhost:3306/employees --driver com.mysql.jdbc.Driver --username sqoop --password hadoop --table current_dept_emp --target-dir '/stage-data/employees/current_dept_emp' --split-by 1 
+
+sqoop import --connect jdbc:mysql://localhost:3306/employees --driver com.mysql.jdbc.Driver --username sqoop --password hadoop --table departments --target-dir '/stage-data/employees/departments' --split-by 1
+
+sqoop import --connect jdbc:mysql://localhost:3306/employees --driver com.mysql.jdbc.Driver --username sqoop --password hadoop --tabldept_emp --target-dir '/stage-data/employees/dept_emp' --split-by 1 
+
+sqoop import --connect jdbc:mysql://localhost:3306/employees --driver com.mysql.jdbc.Driver --username sqoop --password hadoop --tabldept_emp_latest_date --target-dir '/stage-data/employees/dept_emp_latest_date' --split-by 1 
+
+sqoop import --connect jdbc:mysql://localhost:3306/employees --driver com.mysql.jdbc.Driver --username sqoop --password hadoop --tabldept_manager --target-dir '/stage-data/employees/dept_manager' --split-by 1 
+
+sqoop import --connect jdbc:mysql://localhost:3306/employees --driver com.mysql.jdbc.Driver --username sqoop --password hadoop --tablsalaries --target-dir '/stage-data/employees/salaries' --split-by 1
+

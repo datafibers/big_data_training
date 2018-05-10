@@ -1,0 +1,122 @@
+
+
+CREATE EXTERNAL TABLE weblog.access(
+  host STRING,
+  identity STRING,
+  userid STRING,
+  accesstime STRING,
+  request STRING,
+  status STRING,
+  size STRING,
+  referer STRING,
+  agent STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
+WITH SERDEPROPERTIES (
+  "input.regex" = "([^ ]*) ([^ ]*) ([^ ]*) (-|\\[[^\\]]*\\]) ([^ \"]*|\"[^\"]*\") (-|[0-9]*) (-|[0-9]*)(?: ([^ \"]*|\"[^\"]*\") ([^ \"]*|\"[^\"]*\"))?",
+  "output.format.string" = "%1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s"
+)
+STORED AS TEXTFILE
+LOCATION 'hdfs://sandbox-hdp.hortonworks.com:8020/stage-data/weblog/access';
+
+CREATE EXTERNAL TABLE weblog.access2(
+  host STRING,
+  identity STRING,
+  userid STRING,
+  accesstime STRING,
+  request STRING,
+  status STRING,
+  size STRING,
+  referer STRING,
+  agent STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+WITH SERDEPROPERTIES (
+  "input.regex" = "([^ ]*) ([^ ]*) ([^ ]*) (-|\\[[^\\]]*\\]) ([^ \"]*|\"[^\"]*\") (-|[0-9]*) (-|[0-9]*)(?: ([^ \"]*|\"[^\"]*\") ([^ \"]*|\"[^\"]*\"))?",
+  "output.format.string" = "%1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s"
+)
+STORED AS TEXTFILE
+LOCATION 'hdfs://sandbox-hdp.hortonworks.com:8020/stage-data/weblog/access';
+
+
+
+
+create table ctas as 
+select department_id, department_name, 
+cast(null as int) as col_null 
+from departments;
+
+CREATE TABLE weblog.access_conv AS SELECT host,  identity, userid, 
+          cast(from_unixtime(UNIX_TIMESTAMP(accesstime,'[dd/MMM/yyyy:HH:mm:ss Z]')) as timestamp) as accesstime,
+          request, status, size, referer, agent FROM weblog.access2;
+
+select from_unixtime(concat('01/04/2018:',substr(accesstime,13,15))) from weblog.access2 limit 5;
+select cast(from_unixtime(UNIX_TIMESTAMP(concat('01/04/2018',substr(accesstime,13,15)),'dd/MM/yyyy:HH:mm:ss Z')) as timestamp) from weblog.access2 limit 5;
+
+INSERT INTO OVERWRITE 
+
+CREATE TABLE weblog.access_conv AS SELECT host,  identity, userid, 
+          substr(accesstime,12,16)
+          cast(from_unixtime(UNIX_TIMESTAMP(accesstime,'[dd/MMM/yyyy:HH:mm:ss Z]')) as timestamp) as accesstime,
+          request, status, size, referer, agent FROM weblog.access2;
+          
+CREATE TABLE weblog.access_conv 
+AS SELECT host,  identity, userid, accesstime as time, request, status, size, referer, agent FROM weblog.access2 ;
+
+select accesstime, add_months(accesstime, 100) from access_conv limit 5;
+
+
+insert overwrite table weblog.access_log PARTITION (etl_ymd=20180401)
+SELECT  host,  identity, userid, 
+        cast(from_unixtime(UNIX_TIMESTAMP(concat('01/04/2018',substr(accesstime,13,15)),'dd/MM/yyyy:HH:mm:ss Z')) as timestamp) as accesstime,
+        request, status, size, referer, agent FROM weblog.access2;
+        
+CREATE EXTERNAL TABLE `access_log`(                                                            
+   `host` string,                                                                       
+   `identity` string,                                                                   
+   `userid` string,                                                                     
+   `accesstime` timestamp,                                                              
+   `request` string,                                                                    
+   `status` string,                                                                     
+   `size` string,                                                                       
+   `referer` string,                                                                    
+   `agent` string)
+ PARTITIONED BY ( etl_ymd string )
+ ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ' '
+ STORED AS INPUTFORMAT                                                                  
+   'org.apache.hadoop.mapred.TextInputFormat'                                           
+ OUTPUTFORMAT                                                                           
+   'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'                         
+ LOCATION                                                                               
+   'hdfs://sandbox-hdp.hortonworks.com:8020/stage_data/logs/access_conv';  
+
+
+drop table access_log;        
+CREATE EXTERNAL TABLE `access_log`(                                                            
+   `host` string,                                                                       
+   `identity` string,                                                                   
+   `userid` string,                                                                     
+   `accesstime` string,                                                              
+   `request` string,                                                                    
+   `status` string,                                                                     
+   `size` string,                                                                       
+   `referer` string,                                                                    
+   `agent` string)
+ PARTITIONED BY ( etl_ymd string )
+ ROW FORMAT DELIMITED
+   FIELDS TERMINATED BY ' '
+ STORED AS INPUTFORMAT                                                                  
+   'org.apache.hadoop.mapred.TextInputFormat'                                           
+ OUTPUTFORMAT                                                                           
+   'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'                         
+ LOCATION                                                                               
+   'hdfs://sandbox-hdp.hortonworks.com:8020/stage_data/logs/access_conv';  
+
+insert overwrite table weblog.access_log PARTITION (etl_ymd=20180402)
+SELECT  host,  identity, userid, 
+        concat(concat('[02/04/2018',substr(accesstime,13,15)),']') as accesstime,
+        request, status, size, referer, agent FROM weblog.access2;
+
+
+
+ ROW FORMAT SERDE                                                                       
+   'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'   
