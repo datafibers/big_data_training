@@ -8,7 +8,7 @@
         <fs>
             <mkdir  path='${wf:id()}'/>
             <move   source='${wf:id()}' target='${jobOutput}/'/>
-            <chmod  path='${jobOutput}' permissions='-rwxrw-rw-' dir-files='true'><recursive/></chmod>
+            <chmod  path='${jobOutput}/${wf:id()}' permissions='-rwxrw-rw-' dir-files='true'/>
         </fs>
         <ok to="sendEmailSuccess"/>
         <error to="sendEmailKill"/>
