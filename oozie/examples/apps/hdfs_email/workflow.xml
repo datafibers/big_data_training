@@ -6,9 +6,7 @@
     <start to="hdfsCommands"/>
     <action name="hdfsCommands">
         <fs>
-            <mkdir  path='${wf:id()}'/>
-            <move   source='${appRoot}/${wf:id()}' target='${jobOutput}/'/>
-            <chmod  path='${jobOutput}/${wf:id()}' permissions='-rwxrw-rw-' dir-files='true'/>
+            <mkdir  path='${appRoot}/${wf:id()}'/>
         </fs>
         <ok to="end"/>
         <error to="sendEmailKill"/>
