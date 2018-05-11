@@ -7,7 +7,7 @@
     <action name="hdfsCommands">
         <fs>
             <mkdir  path='${wf:id()}'/>
-            <move   source='${wf:id()}' target='${jobOutput}/'/>
+            <move   source='${oozie.wf.application.path}/${wf:id()}' target='${jobOutput}/'/>
             <chmod  path='${jobOutput}/${wf:id()}' permissions='-rwxrw-rw-' dir-files='true'/>
         </fs>
         <ok to="sendEmailSuccess"/>
