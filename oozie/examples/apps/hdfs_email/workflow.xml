@@ -7,20 +7,11 @@
     <action name="hdfsCommands">
         <fs>
             <mkdir  path='${wf:id()}'/>
-            <move   source='${oozie.wf.application.path}/${wf:id()}' target='${jobOutput}/'/>
+            <move   source='${appRoot}/${wf:id()}' target='${jobOutput}/'/>
             <chmod  path='${jobOutput}/${wf:id()}' permissions='-rwxrw-rw-' dir-files='true'/>
         </fs>
-        <ok to="sendEmailSuccess"/>
-        <error to="sendEmailKill"/>
-    </action>
-    <action name="sendEmailSuccess">
-        <email xmlns="uri:oozie:email-action:0.1">
-              <to>${emailToAddress}</to>
-              <subject>Status of workflow ${wf:id()}</subject>
-              <body>The workflow ${wf:id()} completed successfully</body>
-        </email>
         <ok to="end"/>
-        <error to="end"/>
+        <error to="sendEmailKill"/>
     </action>
     <action name="sendEmailKill">
         <email xmlns="uri:oozie:email-action:0.1">
