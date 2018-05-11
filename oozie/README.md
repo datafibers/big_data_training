@@ -37,6 +37,11 @@ oza <job_id>
 ```
 ozk <job_id>
 ```
+* Check job log, need to replace job to application in workflow_id
+```
+yarn logs -applicationId application_1522004167306_0034
+```
+
 # Oozie Setup Issues
 
 #### Issues 1. Oozie web console is disabled. 
