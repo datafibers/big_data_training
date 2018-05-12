@@ -65,7 +65,7 @@ load data inpath '/tmp/hivedemo/data/employee_hr.txt' overwrite into table emplo
 
 drop table if exists employee_id;
 create table if not exists employee_id(
-name string, work_place array<string>, sex_age struct<sex:string,age:int>, skills_score map<string,int>, depart_title map<string,array<string>>
+name string, employee_id int, work_place array<string>, sex_age struct<sex:string,age:int>, skills_score map<string,int>, depart_title map<string,array<string>>
 )
 row format delimited
 fields terminated by '|'
