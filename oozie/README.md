@@ -59,3 +59,7 @@ To enable Oozie web console, we need to install the Ext JS library (in the curre
 1. Database URL: jdbc:mysql://sandbox-hdp.hortonworks.com/oozie
 1. Oozie Data Dir: /hadoop/oozie/data
 1. Restart all oozie servers and choose all suggested changes
+
+#### Issue 3. hive2 action with Beeline failed for write to directory
+https://community.hortonworks.com/articles/134921/error-permission-denied-user-xxx-does-not-have-wri.html
+
