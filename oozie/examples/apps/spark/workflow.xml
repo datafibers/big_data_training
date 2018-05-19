@@ -25,6 +25,20 @@
             <prepare>
                 <delete path="${nameNode}/user/${wf:user()}/${examplesRoot}/output-data/spark"/>
             </prepare>
+            <configuration>
+            <property>
+              <name>oozie.launcher.mapreduce.map.memory.mb</name>
+              <value>2048</value>
+            </property>
+            <property>
+              <name>oozie.launcher.mapreduce.map.java.opts</name>
+              <value>-Xmx2048m</value>
+            </property>
+            <property>
+              <name>mapred.job.queue.name</name>
+              <value>${queueName}</value>
+            </property>
+            </configuration>
             <master>${master}</master>
             <name>Spark-FileCopy</name>
             <class>org.apache.oozie.example.SparkFileCopy</class>
