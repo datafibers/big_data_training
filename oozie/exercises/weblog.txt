@@ -1,5 +1,3 @@
-
-
 CREATE EXTERNAL TABLE weblog.access(
   host STRING,
   identity STRING,
@@ -36,9 +34,6 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION 'hdfs://sandbox-hdp.hortonworks.com:8020/stage-data/weblog/access';
 
-
-
-
 create table ctas as 
 select department_id, department_name, 
 cast(null as int) as col_null 
@@ -62,7 +57,6 @@ CREATE TABLE weblog.access_conv
 AS SELECT host,  identity, userid, accesstime as time, request, status, size, referer, agent FROM weblog.access2 ;
 
 select accesstime, add_months(accesstime, 100) from access_conv limit 5;
-
 
 insert overwrite table weblog.access_log PARTITION (etl_ymd=20180401)
 SELECT  host,  identity, userid, 
@@ -89,7 +83,6 @@ CREATE EXTERNAL TABLE `access_log`(
  LOCATION                                                                               
    'hdfs://sandbox-hdp.hortonworks.com:8020/stage_data/logs/access_conv';  
 
-
 drop table access_log;        
 CREATE EXTERNAL TABLE `access_log`(                                                            
    `host` string,                                                                       
@@ -111,12 +104,7 @@ CREATE EXTERNAL TABLE `access_log`(
  LOCATION                                                                               
    'hdfs://sandbox-hdp.hortonworks.com:8020/stage_data/logs/access_conv';  
 
-insert overwrite table weblog.access_log PARTITION (etl_ymd=20180402)
+INSERT OVVERWRITE TABLE weblog.access_log PARTITION (etl_ymd=20180402)
 SELECT  host,  identity, userid, 
         concat(concat('[02/04/2018',substr(accesstime,13,15)),']') as accesstime,
         request, status, size, referer, agent FROM weblog.access2;
-
-
-
- ROW FORMAT SERDE                                                                       
-   'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'   
