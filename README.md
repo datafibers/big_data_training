@@ -21,3 +21,4 @@ beeline -u "jdbc:hive2://localhost:10000" -f data/setup_tables.sql
 * [Data Generation](http://www.mockaroo.com/)
 * [Dataset API](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.Dataset)
 * [Spark CSV to Avro Tool](https://github.com/datafibers/spark_avro)
+* [Simple Stream](https://github.com/datafibers/simple_stream)
