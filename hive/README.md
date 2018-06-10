@@ -41,17 +41,18 @@ Explore a stock market data file from Yahoo Finance.
 10. Drop partition which is in partition with exchanger="NYSE"
 
 ### Steps for Excersise 2
-Download another set of data from [here](https://github.com/datafibers/big_data_training/raw/master/hive/stocks/data/Stock%20Data.zip). Anser below questions using either Hive, hive over Hbase, or Pheonix or all of them.
-2. Get the number of records by stock symbol, month, year.
-3. Get the average open price for each stock for all the time
-4. Get the price changes in terms of Open - Close for all stocks by month and year
-5. Get the price changes in terms of Hign - Low for all stocks by month and year
-6. Compare the close price for each stock for on beginning of each month (one row for each month)
-7. Get the monthly total Volume for each stock
-8. Find the date when there is no stock information
-9. For May, 2018, which stock has the 3rd max of volume traded?
-10. Generate a year summary for each stock, including avg, max, min for all price indicators
-11. On which date, for each stock has the max price changes (High - Low)
+Download another set of data from [here](https://github.com/datafibers/big_data_training/raw/master/hive/stocks/data/Stock%20Data.zip). Answer below questions using either Hive, hive over Hbase, or Pheonix or all of them.
+
+1. Get the number of records by stock symbol, month, year.
+2. Get the average open price for each stock for all the time
+3. Get the price changes in terms of Open - Close for all stocks by month and year
+4. Get the price changes in terms of Hign - Low for all stocks by month and year
+5. Compare the close price for each stock for on beginning of each month (one row for each month)
+6. Get the monthly total Volume for each stock
+7. Find the date when there is no stock information
+8. For May, 2018, which stock has the 3rd max of volume traded?
+9. Generate a year summary for each stock, including avg, max, min for all price indicators
+10. On which date, for each stock has the max price changes (High - Low)
 
 
 ## 3. Explore Movies
