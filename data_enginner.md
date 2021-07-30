@@ -11,3 +11,24 @@
 ## Concept
 - [ ] [Hadoop in 5 min](https://www.youtube.com/watch?v=aReuLtY0YMI), yarn and hdfs
 - [ ] [HDFS command](https://www.alluxio.io/learn/hdfs/basic-file-operations-commands/)
+- [ ] [Hive 1](https://github.com/datafibers/big_data_training/blob/master/hive/Big%20Data%20Basic%20Training%20Apache%20Hive_1.pdf)
+- [ ] [Hive 1](https://github.com/datafibers/big_data_training/blob/master/hive/Big%20Data%20Basic%20Training%20Apache%20Hive_1.pdf)
+- [ ] PySpark - DataFrame and SQL word document
+
+## Interview Questions
+### Spark
+- [ ] https://career.guru99.com/apache-spark-interview-questions/
+- [ ] http://www.hadoopexam.com/spark/training/docs/Apache_Spark_Interview_Questions_Book.pdf
+- [ ] https://www.gangboard.com/blog/apache-spark-interview-questions-and-answers
+
+### Hive
+- [ ] https://career.guru99.com/top-30-hive-interview-questions/
+
+### Python
+- [ ] https://www.toptal.com/python/interview-questions
+- [ ] https://everyday.codes/python/10-advanced-python-interview-questions/
+
+## Extended
+- [ ] [What is Kafka](https://www.youtube.com/watch?v=FKgi3n-FyNU)
+- [ ] [Azure Data Factory](https://www.youtube.com/watch?v=EpDkxTHAhOs)
+- [ ] [Azure Databricks Spark](https://www.youtube.com/watch?v=M7t1T1Q5MNc)
