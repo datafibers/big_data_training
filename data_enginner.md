@@ -32,4 +32,5 @@
 - [ ] [What is Kafka](https://www.youtube.com/watch?v=FKgi3n-FyNU)
 - [ ] [Azure Data Factory](https://www.youtube.com/watch?v=EpDkxTHAhOs)
 - [ ] [Azure Databricks Spark](https://www.youtube.com/watch?v=M7t1T1Q5MNc)
+- [ ] [API for beginners](https://www.youtube.com/watch?v=GZvSYJDk-us)
 - [ ] [Behavior Questions](https://www.themuse.com/advice/30-behavioral-interview-questions-you-should-be-ready-to-answer)
