@@ -34,3 +34,5 @@
 - [ ] [Azure Databricks Spark](https://www.youtube.com/watch?v=M7t1T1Q5MNc)
 - [ ] [API for beginners](https://www.youtube.com/watch?v=GZvSYJDk-us)
 - [ ] [Behavior Questions](https://www.themuse.com/advice/30-behavioral-interview-questions-you-should-be-ready-to-answer)
+- [ ] [interview Record](https://interviewing.io/recordings)
+- [ ] [Mock Interview](https://www.pramp.com/)
