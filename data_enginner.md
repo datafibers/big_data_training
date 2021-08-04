@@ -29,6 +29,7 @@
 - [ ] https://everyday.codes/python/10-advanced-python-interview-questions/
 
 ## Extended
+- [ ] [Scheduler OOZIE](https://www.edureka.co/blog/brief-introduction-to-oozie/)
 - [ ] [What is Kafka](https://www.youtube.com/watch?v=FKgi3n-FyNU)
 - [ ] [Azure Data Factory](https://www.youtube.com/watch?v=EpDkxTHAhOs)
 - [ ] [Azure Databricks Spark](https://www.youtube.com/watch?v=M7t1T1Q5MNc)
