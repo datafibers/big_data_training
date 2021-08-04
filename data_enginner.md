@@ -29,6 +29,10 @@
 - [ ] https://www.toptal.com/python/interview-questions
 - [ ] https://everyday.codes/python/10-advanced-python-interview-questions/
 
+### Azure Data Factory
+- [ ] https://coursejet.com/blog/azure-data-factory-interview-questions-and-answers/
+- [ ] https://intellipaat.com/blog/interview-question/azure-data-factory-interview-questions/
+
 ## Extended
 - [ ] [Scheduler OOZIE](https://www.edureka.co/blog/brief-introduction-to-oozie/)
 - [ ] [What is Kafka](https://www.youtube.com/watch?v=FKgi3n-FyNU)
