@@ -36,9 +36,8 @@
 ## Extended
 - [ ] [Scheduler OOZIE](https://www.edureka.co/blog/brief-introduction-to-oozie/)
 - [ ] [What is Kafka](https://www.youtube.com/watch?v=FKgi3n-FyNU)
-- [ ] [Azure Data Factory Chinese](https://www.cnblogs.com/ljhdo/p/14085604.html)
+- [ ] [Azure Data Factory Beginnner Guide](https://www.cathrinewilhelmsen.net/series/beginners-guide-azure-data-factory/)
 - [ ] [Azure Data Factory Video Tutorial](https://www.youtube.com/watch?v=EpDkxTHAhOs&list=PLGjZwEtPN7j8b9dPA0HrtJDptOB69B506&index=1)
-- [ ] [Azure Data Factory vs SSIS](https://www.timmitchell.net/post/2020/07/16/comparing-ssis-and-azure-data-factory/)
 - [ ] [Azure Databricks Spark](https://www.youtube.com/watch?v=M7t1T1Q5MNc)
 - [ ] [API for beginners](https://www.youtube.com/watch?v=GZvSYJDk-us)
 - [ ] [Behavior Questions](https://www.themuse.com/advice/30-behavioral-interview-questions-you-should-be-ready-to-answer)
