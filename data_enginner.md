@@ -17,6 +17,7 @@
 
 ## Interview Questions
 ### Spark
+- [ ] [Spark Python Submit and Word Count](https://blog.csdn.net/huguozhiengr/article/details/96482397)
 - [ ] https://career.guru99.com/apache-spark-interview-questions/
 - [ ] http://www.hadoopexam.com/spark/training/docs/Apache_Spark_Interview_Questions_Book.pdf
 - [ ] https://www.gangboard.com/blog/apache-spark-interview-questions-and-answers
