@@ -9,8 +9,8 @@
 - [ ] [HackRank Python](https://www.hackerrank.com/domains/python)
 
 ## Concept
-- [ ] [Hadoop in 5 min](https://www.youtube.com/watch?v=aReuLtY0YMI), yarn and hdfs
-- [ ] [HDFS command](https://www.alluxio.io/learn/hdfs/basic-file-operations-commands/)
+- [x] [Hadoop in 5 min](https://www.youtube.com/watch?v=aReuLtY0YMI), yarn and hdfs
+- [x] [HDFS command](https://www.alluxio.io/learn/hdfs/basic-file-operations-commands/)
 - [ ] [Hive 1](https://github.com/datafibers/big_data_training/blob/master/hive/Big%20Data%20Basic%20Training%20Apache%20Hive_1.pdf)
 - [ ] [Hive 2](https://github.com/datafibers/big_data_training/blob/master/hive/Big%20Data%20Basic%20Training%20Apache%20Hive_2.pdf)
 - [ ] PySpark - DataFrame and SQL word document
