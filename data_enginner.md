@@ -39,6 +39,7 @@
 - [ ] [Azure Data Factory Beginnner Guide](https://www.cathrinewilhelmsen.net/series/beginners-guide-azure-data-factory/)
 - [ ] [Azure Data Factory Video Tutorial](https://www.youtube.com/watch?v=EpDkxTHAhOs&list=PLGjZwEtPN7j8b9dPA0HrtJDptOB69B506&index=1)
 - [ ] [Azure Databricks Spark](https://www.youtube.com/watch?v=M7t1T1Q5MNc)
+- [ ] [Azure Data Analytics Overview](https://www.youtube.com/watch?v=JUQXx0R0RfE)
 - [ ] [API for beginners](https://www.youtube.com/watch?v=GZvSYJDk-us)
 - [ ] [Behavior Questions](https://www.themuse.com/advice/30-behavioral-interview-questions-you-should-be-ready-to-answer)
 - [ ] [interview Record](https://interviewing.io/recordings)
