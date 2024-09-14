@@ -1,0 +1,7 @@
+Date,Product,Category,Sales,Revenue
+2024-01-01,Widget A,Electronics,10,150.00
+2024-01-01,Widget B,Furniture,,200.00
+2024-01-02,Widget A,Electronics,5,75.00
+2024-01-02,,Electronics,7,105.00
+2024-01-03,Widget C,Furniture,3,150.00
+2024-01-03,Widget C,Furniture,3,150.00
